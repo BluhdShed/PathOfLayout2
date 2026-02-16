@@ -6,17 +6,29 @@
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
+            margin-top: 40px;
         }
-        img {
-            width: 800px;
-            height: auto;
-            margin-bottom: 20px;
+
+        .image-container {
+            width: 500px;
+            height: 350px;
+            margin: 0 auto 20px auto;
             border: 2px solid #333;
+            overflow: hidden;
+            position: relative;
         }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform-origin: center center;
+            transition: transform 0.1s ease;
+        }
+
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 10px 18px;
+            font-size: 14px;
             margin: 5px;
             cursor: pointer;
         }
@@ -26,12 +38,13 @@
 
     <h2>Clearfell Map Layouts</h2>
 
-    <img id="imageViewer" src="Images/clearfell/Clearfell01.png" alt="Image Viewer">
-
-    <br>
+    <div class="image-container">
+        <img id="imageViewer" src="Images/clearfell/Clearfell01.png" alt="Image Viewer">
+    </div>
 
     <button onclick="prevImage()">Previous</button>
     <button onclick="nextImage()">Next</button>
+    <button onclick="resetZoom()">Reset Zoom</button>
 
     <script>
         const images = [
@@ -40,9 +53,12 @@
         ];
 
         let currentIndex = 0;
+        let scale = 1;
+        const img = document.getElementById("imageViewer");
 
         function showImage() {
-            document.getElementById("imageViewer").src = images[currentIndex];
+            img.src = images[currentIndex];
+            resetZoom();
         }
 
         function nextImage() {
@@ -54,10 +70,30 @@
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             showImage();
         }
+
+        function resetZoom() {
+            scale = 1;
+            img.style.transform = `scale(${scale})`;
+        }
+
+        // Zoom with mouse wheel
+        img.addEventListener("wheel", function(e) {
+            e.preventDefault();
+
+            if (e.deltaY < 0) {
+                scale += 0.1; // zoom in
+            } else {
+                scale -= 0.1; // zoom out
+            }
+
+            // Limit zoom level
+            scale = Math.min(Math.max(1, scale), 5);
+
+            img.style.transform = `scale(${scale})`;
+        });
     </script>
 
 </body>
-
 </html>
 
 
