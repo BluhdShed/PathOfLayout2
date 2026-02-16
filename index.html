@@ -4,6 +4,8 @@
     <title>Path of Layout 2</title>
     <style>
         body {
+		    color:#FFFFFF;
+	        background:#323232;
             text-align: center;
             font-family: Arial, sans-serif;
             margin-top: 40px;
@@ -25,22 +27,38 @@
             object-fit: contain;
             transform-origin: center center;
             transition: transform 0.1s ease;
-            user-select: none;          /* Prevent selection */
-            -webkit-user-drag: none;    /* Prevent default drag */
+            user-select: none;         
+            -webkit-user-drag: none;   
             cursor: grab;
         }
 
         button {
-            padding: 10px 18px;
-            font-size: 14px;
+            background-color: #f4c430;
+            color: #111;
+	    font-size: 18px;
+            font-weight: bold;
+            border: none;
+            padding: 12px 22px;
             margin: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.15s ease;
+        }
+
+        button:hover {
+            background-color: #ffdb4d;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0px);
         }
     </style>
 </head>
 <body>
 
-    <h2>Clearfell Map Layouts</h2>
+    <h1>Clearfell Map Layouts</h2>
 
     <div class="image-container">
         <img id="imageViewer" src="Images/clearfell/Clearfell01.png" alt="Image Viewer">
@@ -135,5 +153,3 @@
 
 </body>
 </html>
-
-
