@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Cycler</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border: 2px solid #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Clearfell Map Layouts</h2>
+
+    <img id="imageViewer" src="Images/clearfell/Clearfell01.png" alt="Image Viewer">
+
+    <br>
+
+    <button onclick="prevImage()">Previous</button>
+    <button onclick="nextImage()">Next</button>
+
+    <script>
+        const images = [
+            "Images/clearfell/Clearfell01.png",
+            "Images/clearfell/Clearfell02.png"
+        ];
+
+        let currentIndex = 0;
+
+        function showImage() {
+            document.getElementById("imageViewer").src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage();
+        }
+    </script>
+
+</body>
+</html>
